@@ -1,5 +1,5 @@
 const express = require('express');
-const expenseTrackerController = require('./expenseTrackerController')
+const expenseTrackerController = require('../controllers/expenseTrackerController')
 const expenseRouter = express.Router();
 
 expenseRouter.get('/getAllExpenses' , expenseTrackerController.getAllExpenses)

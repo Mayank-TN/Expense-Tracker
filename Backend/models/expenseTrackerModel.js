@@ -1,4 +1,4 @@
-const sequelize = require('./mongoDb');
+const sequelize = require('../utils/mongoDb');
 
 const Sequelize = require('sequelize')
 

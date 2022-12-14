@@ -1,4 +1,4 @@
-const Expense = require('./expenseTrackerModel');
+const Expense = require('../models/expenseTrackerModel');
 
 exports.getAllExpenses = async (req,res,next)=>{
     const expenses = await Expense.findAll();

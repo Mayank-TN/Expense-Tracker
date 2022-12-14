@@ -5,24 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense-Tracker</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <form>
-    <label>Choose Expense Amount : </label><input type="text" id="ExpenseAmount"><br><br>
-    <label>Choose Description : </label><input type="text" id="Description"><br><br>
-    <label>Choose A Category</label>
-    <select id="category">
-        <option>--Select--</option>
-        <option>Fuel</option>
-        <option>Food</option>
-        <option>Bill</option>
-        <option>Entertainment</option>
-    </select><br><br>
+    <div id="form-container">
+        <form>
+            <h1>Expense Tracker</h1>
+            <label for="ExpenseAmount">Choose Expense Amount : </label><br><input type="text" id="ExpenseAmount"><br><br>
+            <label for="Description">Choose Description : </label><br><input type="text" id="Description"><br><br>
+            <label for="category">Choose A Category : </label><br>
+            <select id="category">
+                <option>--Select--</option>
+                <option>Fuel</option>
+                <option>Food</option>
+                <option>Bill</option>
+                <option>Entertainment</option>
+            </select><br><br>
+            
+            <button id="btn">Add Expense</button><br><br>
+            </form>
+
+    </div>
     
-    <button id="btn">Add Expense</button>
-    </form>
-    <ul id="ul">
-    </ul>
+    <h1>Records</h1>
+    <table id="table">
+        <tbody id="tbody">
+            <thead>
+                <td>Expense-Amount</td>
+                    <td>Description</td>
+                    <td>Category</td>
+                    <td>Action</td>
+            </thead>
+        </tbody>
+    </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
     <script src="index.js"></script>
 </body>

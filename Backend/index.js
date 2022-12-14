@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors')
-const sequelize = require('./mongoDb');
-const expensesRoutes = require('./expenseRoutes')
+const sequelize = require('./utils/mongoDb');
+const expensesRoutes = require('./routes/expenseRoutes')
 
 const app = express();
 app.use(cors())
