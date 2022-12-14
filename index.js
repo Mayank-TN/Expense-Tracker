@@ -1,4 +1,4 @@
-const url = 'https://crudcrud.com/api/7e9e499e96034b5d88ab395d6cefdef6/expenses/';
+const url = 'http://localhost:3000/expenses';
 
 const expenseAmount = document.getElementById('ExpenseAmount');
 const description = document.getElementById('Description');
@@ -22,7 +22,7 @@ async function btnHandle(e) {
         description: description.value,
         category: category.value,
     }
-    const response = await axios.post(url , data)
+    const response = await axios.post(url +'/postNewExpense', data)
     
     showExpenseOnScreen()
     expenseAmount.value = ""
@@ -31,8 +31,8 @@ async function btnHandle(e) {
 }
 
 async function deleteHandler(data) {
-    const id = data._id ;
-    const response = await axios.delete(url + id);
+    const id = data.id ;
+    const response = await axios.delete(url + '/deleteExpense/'+ id);
     showExpenseOnScreen();
 }
 
@@ -43,7 +43,7 @@ async function editHandler(data) {
     btn.style.display = 'none';
     const editMainBtn = document.createElement('button')
     editMainBtn.textContent = 'EDIT CHANGES'
-    editMainBtn.addEventListener('click' , (e)=> editChangesHandler(e, data._id ,editMainBtn))
+    editMainBtn.addEventListener('click' , (e)=> editChangesHandler(e, data.id ,editMainBtn))
     form.appendChild(editMainBtn);
 
     
@@ -52,10 +52,10 @@ async function editHandler(data) {
 
 async function showExpenseOnScreen() {
     ul.textContent = ""
-    const response = await axios.get(url)
+    const response = await axios.get(url + '/getAllExpenses')
     response.data.map((data) => {
         const li = document.createElement('li');
-        li.id = data._id;
+        li.id = data.id;
         li.textContent = `${data.expenseAmount} ${data.description} ${data.category}      ---------> `;
         const deleteBtn = document.createElement('button')
         deleteBtn.textContent = 'Delete'
@@ -77,9 +77,13 @@ async function editChangesHandler(e,id , editMainBtn){
         description : description.value ,
         category : category.value
     }
-    const response = await axios.put(url + id , data)
-    editMainBtn.removeEventListener('click' , (e)=> editChangesHandler(e, data._id))
+    const response = await axios.put(url+'/editExpense/' + id , data).then(()=>{
+        showExpenseOnScreen()
+    })
+    editMainBtn.removeEventListener('click' , (e)=> editChangesHandler(e, data.id))
     editMainBtn.style.display = 'none'
     btn.style.display = 'block'
-    showExpenseOnScreen()
+    expenseAmount.value = ''
+    description.value = ''
+    
 }
