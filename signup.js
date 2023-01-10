@@ -1,4 +1,5 @@
 const url = 'http://localhost:3000/user';
+const main = document.querySelector('main');
 
 const signup = async (e) =>{
     e.preventDefault();
@@ -8,5 +9,14 @@ const signup = async (e) =>{
         password : e.target.password.value
     }
     
-    await axios.post(url+ '/signup' , signupValue)
+    axios.post(url+ '/signup' , signupValue).then((result) => {
+        window.location.href = "./login.html"
+        
+    }).catch((err) => {
+        console.log(err)
+        const span = document.createElement('span');
+        span.style.color = 'red' ;
+        span.textContent = err.message;
+        main.appendChild(span)
+    });
     }
