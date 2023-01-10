@@ -1,22 +1,19 @@
-
-
-
 const url = 'http://localhost:3000/user';
-const main = document.querySelector('#signup-main');
+const main = document.querySelector('#login-main');
 
-const signup = async (e) =>{
+const login = async (e) =>{
     e.preventDefault();
-    const signupValue = {
-        name : e.target.name.value ,
+    const loginValue = {
         email : e.target.email.value ,
         password : e.target.password.value
     }
     
-    axios.post(url+ '/signup' , signupValue).then((result) => {
-        window.location.href = "./login.html"
+    axios.post(url+ '/login' , loginValue).then((result) => {
+        console.log(result.data)
+        window.location.href = "./index.html"
         
     }).catch((err) => {
-        console.log(err)
+        console.log(err.response.data)
         const span = document.createElement('span');
         span.style.color = 'red' ;
         span.textContent = err.response.data.error;

@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const User = require('../models/userModel');
 
 exports.postNewUser = async (req,res,next)=>{
@@ -7,10 +8,26 @@ exports.postNewUser = async (req,res,next)=>{
     res.json(response)
     }
     catch(e){
-        res.status(403).send(e.message)
+        res.status(403).json({ error : "User already exist"})
     } 
 }
 
-exports.getUser = (req,res ,next) =>{
-    res.json('wornsjdndsnsking')
+
+exports.postLogin = async (req,res,next)=>{
+        const loggedInUser = req.body.email;
+        const loggedInPassword = req.body.password ;
+
+        const response = await User.findOne({where : {email : loggedInUser}})
+        if(response === null){
+            res.status(404).json({error : 'User not found'});
+        }
+        else{
+            if(response.password === loggedInPassword){
+                res.status(200).json({success : 'User loggin successfully'})
+            }
+            else{
+                res.status(403).json({error : 'Incorrect password'});
+            }
+
+        }
 }

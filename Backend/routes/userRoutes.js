@@ -4,7 +4,8 @@ const userRouter = express.Router();
 
 userRouter.post('/signup' , userController.postNewUser );
 
-userRouter.get('/show-user' ,  userController.getUser);
+
+userRouter.post('/login' , userController.postLogin );
 
 
 

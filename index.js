@@ -3,9 +3,9 @@ const url = 'http://localhost:3000/expenses';
 const expenseAmount = document.getElementById('ExpenseAmount');
 const description = document.getElementById('Description');
 const category = document.getElementById('category');
-const form = document.querySelector('form');
+const form = document.querySelector('#expense-form');
 
-const btn = document.getElementById('btn');
+const btn = document.getElementById('btn-expense');
 const tbody = document.getElementById('tbody')
 btn.style.backgroundColor = "green"
 
@@ -112,19 +112,3 @@ async function editChangesHandler(e,id , editMainBtn){
     description.value = ''
     
 }
-
-
-
-//--------------------------------------Sign Up page ---------------------------------------------- //
-
-const urlForSign = 'http://localhost:3000/user';
-
-const signup = async (e) =>{
-    e.preventDefault();
-    const signupValue = {
-        name : e.target.name.value ,
-        email : e.target.email.value ,
-        password : e.target.password.value
-    }
-    await axios.post(urlForSign+ '/signup' , signupValue)
-    }
