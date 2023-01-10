@@ -61,7 +61,7 @@ async function editHandler(data) {
 
 async function showExpenseOnScreen() {
     tbody.textContent = ''
-    const response = await axios.get(url + '/getAllExpenses')
+    //const response = await axios.get(url + '/getAllExpenses')
     // response.data.map((data) => {
     //     const li = document.createElement('li');
     //     li.id = data.id;
@@ -90,7 +90,6 @@ async function showExpenseOnScreen() {
         tr.appendChild(deleteBtn)
         tr.appendChild(editBtn)
         
-        
         tbody.appendChild(tr)
     })
 }
@@ -113,3 +112,19 @@ async function editChangesHandler(e,id , editMainBtn){
     description.value = ''
     
 }
+
+
+
+//--------------------------------------Sign Up page ---------------------------------------------- //
+
+const urlForSign = 'http://localhost:3000/user';
+
+const signup = async (e) =>{
+    e.preventDefault();
+    const signupValue = {
+        name : e.target.name.value ,
+        email : e.target.email.value ,
+        password : e.target.password.value
+    }
+    await axios.post(urlForSign+ '/signup' , signupValue)
+    }
