@@ -26,7 +26,7 @@ exports.postLogin = async (req,res,next)=>{
                 res.status(200).json({success : 'User loggin successfully'})
             }
             else{
-                res.status(403).json({error : 'Incorrect password'});
+                res.status(401).json({error : 'User not authorized'});
             }
 
         }
