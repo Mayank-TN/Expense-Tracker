@@ -22,12 +22,16 @@ exports.postLogin = async (req,res,next)=>{
             const loggedInUser = req.body.email;
         const loggedInPassword = req.body.password ;
 
+
         const response = await User.findOne({where : {email : loggedInUser}})
         if(response === null){
             res.status(404).json({error : 'User not found'});
         }
         else{
-            if(response.password === loggedInPassword){
+           
+            const bool = await bcrypt.compare(loggedInPassword , response.password);
+            console.log(loggedInPassword, response.password , bool)
+            if(bool){
                 res.status(200).json({success : 'User loggin successfully'})
             }
             else{
