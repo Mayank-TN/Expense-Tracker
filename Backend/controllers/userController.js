@@ -28,9 +28,7 @@ exports.postLogin = async (req,res,next)=>{
             res.status(404).json({error : 'User not found'});
         }
         else{
-           
             const bool = await bcrypt.compare(loggedInPassword , response.password);
-            console.log(loggedInPassword, response.password , bool)
             if(bool){
                 res.status(200).json({success : 'User loggin successfully'})
             }

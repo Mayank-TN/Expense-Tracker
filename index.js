@@ -17,12 +17,12 @@ btn.addEventListener('click', (e) => btnHandle(e))
 async function btnHandle(e) {
     e.preventDefault();
     if(expenseAmount.value.trim() === '' || description.value.trim() === '' || category.value === '--Select--'){
-        const span = document.createElement('h2')
-        span.textContent = 'Enter Mandatory Details'
-        form.appendChild(span)
+        const h2 = document.createElement('h2')
+        h2.textContent = 'Enter Mandatory Details'
+        form.appendChild(h2)
 
         setTimeout(()=>{
-            span.remove()
+            h2.remove()
         },3000)
     }
     else{
