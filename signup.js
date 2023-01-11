@@ -12,9 +12,9 @@ const signup = async (e) =>{
         password : e.target.password.value
     }
     
-    axios.post(url+ '/signup' , signupValue).then((result) => {
-        window.location.href = "./login.html"
-        
+    axios.post(url+ '/signup' , signupValue).then((result) => { 
+        alert(result.data.success)
+        window.location.href = "./login.html" 
     }).catch((err) => {
         console.log(err)
         const span = document.createElement('span');

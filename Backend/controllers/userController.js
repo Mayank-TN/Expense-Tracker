@@ -1,20 +1,25 @@
 const { where } = require('sequelize');
 const User = require('../models/userModel');
+const bcrypt = require('bcrypt');
 
 exports.postNewUser = async (req,res,next)=>{
     try{
-        const newUser = req.body ;
-    const response = await User.create(newUser);
-    res.json(response)
+        const name = req.body.name ;
+        const email = req.body.email;
+        const password = req.body.password;
+        const hash = await bcrypt.hash(password , 10);
+        const response = await User.create({name , email , password : hash});
+         res.json({success : "User created successfully"})
     }
     catch(e){
-        res.status(403).json({ error : "User already exist"})
+        res.status(500).json({ error : "User already exist"})
     } 
 }
 
 
 exports.postLogin = async (req,res,next)=>{
-        const loggedInUser = req.body.email;
+        try{
+            const loggedInUser = req.body.email;
         const loggedInPassword = req.body.password ;
 
         const response = await User.findOne({where : {email : loggedInUser}})
@@ -29,5 +34,9 @@ exports.postLogin = async (req,res,next)=>{
                 res.status(401).json({error : 'User not authorized'});
             }
 
+        }
+        }
+        catch(e){
+            console.log(e);
         }
 }
