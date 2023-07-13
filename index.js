@@ -37,8 +37,9 @@ async function btnHandle(e) {
         expenseAmount.value = ""
         description.value = ""
     }
-
+    console.log('ok')
 }
+
 
 async function deleteHandler(data) {
     const id = data.id ;
